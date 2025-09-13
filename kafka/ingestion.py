@@ -40,9 +40,9 @@ def fetch_prices(coins):
                 'timestamp': timestamp
             }
             producer.send(KAFKA_TOPIC, message)
-            print(f"Sent: {message}")
+            print(f"Sent: {message}", flush=True)
     else:
-        print(f"API error: {response.status_code}")
+        print(f"API error: {response.status_code}", flush=True)
 
 while True:
     fetch_prices(COINS)
