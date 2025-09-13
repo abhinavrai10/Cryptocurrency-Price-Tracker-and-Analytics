@@ -42,7 +42,7 @@ services:
     environment:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
       - KAFKA_TOPIC=crypto-prices
-      - COINGECKO_API=https://api.coingecko.com/api/v3/simple/price
+      - COINGECKO_API=https://api.coingecko.com/api/v3/
       - COINS=bitcoin,ethereum,binancecoin,tether,solana,ripple,cardano,dogecoin,tron,avalanche-2,chainlink,polkadot,polygon,litecoin,near,uniswap,cosmos,stellar,algorand,vechain,internet-computer,filecoin,aptos,hedera,arbitrum
       - PYTHONUNBUFFERED=1
     command: python -u ingestion.py
