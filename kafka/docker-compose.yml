@@ -26,9 +26,9 @@ services:
       - zookeeper
     healthcheck:
       test: ["CMD", "nc", "-z", "localhost", "9092"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
+      interval: 15s
+      timeout: 10s
+      retries: 20
 
   ingestion:
     build:
