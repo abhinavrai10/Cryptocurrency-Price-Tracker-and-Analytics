@@ -1,0 +1,20 @@
+Research CoinGecko public API structure & rate limits
+Design overall architecture (flowchart using lucid)
+Define schema for price data (coin, price, timestamp, etc.)
+Identify technical constraints
+Plan data enrichment logic (volatility, % change, SMA, etc.)
+Decide between Delta Lake (Databricks FS), local or Snowflake for storage
+
+Design folder structure for codebase (modular ETL pipeline)
+Set up python on vscode and dependencies
+Set up Python script to pull coin data from CoinGecko every 30s
+Create Kafka topic for real-time crypto stream
+Ingest CoinGecko API data into kafka producer (Python)
+
+Configure kafka consumer in Spark Structured Streaming
+Parse and flatten JSON response into Spark Dataframe
+Convert to parquet and save in local filesystem
+
+Write a script to read data from filesystem and compute % price change (1 min, 5min)
+Compute moving averages (SMA, EMA) and rolling volatility (e.g., standard deviation)
+Identify top 5 gainers and losers in last 5 min

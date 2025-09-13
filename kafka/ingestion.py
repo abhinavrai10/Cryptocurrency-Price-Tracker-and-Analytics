@@ -8,7 +8,11 @@ from datetime import datetime
 KAFKA_BOOTSTRAP_SERVERS = ['localhost:9092']  # Update if external
 KAFKA_TOPIC = 'crypto-prices'
 COINGECKO_API = 'https://api.coingecko.com/api/v3/simple/price'
-COINS = ['bitcoin', 'ethereum']  # Add up to 50, comma-separated IDs
+COINS = ['bitcoin', 'ethereum', 'binancecoin', 'tether', 'solana',
+    'ripple', 'cardano', 'dogecoin', 'tron', 'avalanche-2',
+    'chainlink', 'polkadot', 'polygon', 'litecoin', 'near',
+    'uniswap', 'cosmos', 'stellar', 'algorand', 'vechain',
+    'internet-computer', 'filecoin', 'aptos', 'hedera', 'arbitrum']  
 
 producer = KafkaProducer(bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
                          value_serializer=lambda v: json.dumps(v).encode('utf-8'))

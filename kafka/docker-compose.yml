@@ -14,7 +14,7 @@ services:
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://<your-ec2-public-ip>:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://172-31-23-60:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
@@ -29,6 +29,6 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092  # Link to kafka service
       - KAFKA_TOPIC=crypto-prices
       - COINGECKO_API=https://api.coingecko.com/api/v3/simple/price
-      - COINS=bitcoin,ethereum  # Expand to 50 coins as needed
+      - COINS=bitcoin,ethereum,binancecoin,tether,solana,ripple,cardano,dogecoin,tron,avalanche-2,chainlink,polkadot,polygon,litecoin,near,uniswap,cosmos,stellar,algorand,vechain,internet-computer,filecoin,aptos,hedera,arbitrum
     depends_on:
       - kafka
