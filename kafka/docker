@@ -1,0 +1,25 @@
+FROM python:3.9-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements first (for caching)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the ingestion script
+COPY ingestion.py .
+
+# Environment variables (to be set in docker-compose)
+ENV KAFKA_BOOTSTRAP_SERVERS=localhost:9092 \
+    KAFKA_TOPIC=crypto-prices \
+    COINGECKO_API=https://api.coingecko.com/api/v3/simple/price
+
+# Run the script
+CMD ["python", "ingestion.py"]
