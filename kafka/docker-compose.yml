@@ -5,7 +5,12 @@ services:
       - '2181:2181'
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
-  
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "2181"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   kafka:
     image: bitnami/kafka:latest
     ports:
@@ -19,7 +24,12 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
-  
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "9092"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
   ingestion:
     build:
       context: .
@@ -31,4 +41,5 @@ services:
       - COINGECKO_API=https://api.coingecko.com/api/v3/simple/price
       - COINS=bitcoin,ethereum,binancecoin,tether,solana,ripple,cardano,dogecoin,tron,avalanche-2,chainlink,polkadot,polygon,litecoin,near,uniswap,cosmos,stellar,algorand,vechain,internet-computer,filecoin,aptos,hedera,arbitrum
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
